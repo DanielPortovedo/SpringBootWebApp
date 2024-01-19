@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Details</title>
+</head>
+<body>
+<table class="table">
+    <tbody>
+    <tr th:each="cookieKey : ${cookies.keySet()}">
+        <td th:text="${cookieKey} + '=' + ${cookies.get(cookieKey)}">cookie</td>
+    </tr>
+    </tbody>
+</table>
+
+<p th:if="${ssoHeaderValue} != null" th:text="${ssoHeaderValue}"></p>
+<p th:if="${cernUsernameHeader} != null" th:text="${cernUsernameHeader}"></p>
+<p th:if="${userRolesHeader} != null" th:text="${userRolesHeader}"></p>
+
+<a href="/">Back</a>
+</body>
+</html>
