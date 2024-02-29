@@ -5,6 +5,7 @@
     <title>User Details</title>
 </head>
 <body>
+<h3>Cookies</h3>
 <table class="table">
     <tbody>
     <tr th:each="cookieKey : ${cookies.keySet()}">
@@ -13,9 +14,14 @@
     </tbody>
 </table>
 
-<p th:if="${ssoHeaderValue} != null" th:text="${ssoHeaderValue}"></p>
-<p th:if="${cernUsernameHeader} != null" th:text="${cernUsernameHeader}"></p>
-<p th:if="${userRolesHeader} != null" th:text="${userRolesHeader}"></p>
+<h3>Headers</h3>
+<table class="table">
+    <tbody>
+    <tr th:each="headerKey : ${headers.keySet()}">
+        <td th:text="${headerKey} + '=' + ${headers.get(headerKey)}">header</td>
+    </tr>
+    </tbody>
+</table>
 
 <a href="/">Back</a>
 </body>

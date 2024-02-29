@@ -6,15 +6,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 
 import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 public class UserController {
 
     @GetMapping("/userinfo")
     public String displayUserInfo(@RequestHeader(name = "cookie", required = false) String cookie,
-                                  @RequestHeader(name = "SSO_REMOTE_USER", required = false) String ssoRemoteUser,
-                                  @RequestHeader(name = "X-Cern-Username", required = false) String headerUsername,
-                                  @RequestHeader(name = "X-Cern-User-Roles", required = false) String headerRoles,
+                                  @RequestHeader Map<String, String> headers,
                                   Model model) {
         HashMap<String, String> cookies = new HashMap<>();
 
@@ -29,12 +28,8 @@ public class UserController {
             }
         }
 
-
-
         model.addAttribute("cookies", cookies);
-        model.addAttribute("ssoRemoteUser", ssoRemoteUser);
-        model.addAttribute("cernUsernameHeader", headerUsername);
-        model.addAttribute("userRolesHeader", headerRoles);
+        model.addAttribute("headers", headers);
 
         return "userinformation";
 
